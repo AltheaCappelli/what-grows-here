@@ -1,0 +1,195 @@
+Plant;WInd resistancy;Water need;USDA hardiness  ;height;width;Sunlight;Balcony direction;Category (veg, herb, fruit, flower)
+Artichoke;Strong winds;moist;5 to 9  ;;;Full Sun;6 – 10 hours/day;vegetable
+Arugula;;dry, moist;5 to 10  ;;;Tolerates Partial Shade/Partial Sun;6 – 8 hours/day;herb, vegetable
+Asparagus, Crown;maritime;moist;2 to 9  ;;;Full Sun;8 – 10 hours/day;vegetable
+Basil;;moist;9 to 11  ;;; Full sun ;6+ hours);herb
+Bean, Bush;;moist;2 to 11  ;;;Full Sun;8 – 10 hours/day;vegetable
+Bean, Lima Bush;;moist;10 to 12  ;;;Full Sun;8 – 10 hours/day;vegetable
+Bean, Scarlet Runner;;moist;1 to 12  ;;;Full Sun;8 – 10 hours/day;vegetable
+Beetroot;;moist;4 to 8  ;;;Tolerates Partial Shade/Partial Sun;6 – 8 hours/day;vegetable
+Begonias;;moist;6 to 9  ;;; Full shade ;less than 3 hours of sun);flower
+Black-Eyed Pea (Cowpea, Southern Pea);;dry, moist;10 to 12  ;;;Full Sun;8 – 10 hours/day;vegetable
+Bleeding Hearts;;moist;3 to 9  ;;; Full shade ;less than 3 hours of sun);flower
+Bok Choy;;moist;6 to 9  ;;;Tolerates Partial Shade/Partial Sun;6 – 8 hours/day;vegetable
+Broccoli;maritime;moist;2 to 11  ;;;Full Sun;8 – 10 hours/day;vegetable
+Brussels Sprout;maritime;moist;6 to 9  ;;;Full Sun;8 – 10 hours/day;vegetable
+white Cabbage;maritime;moist;7 to 11  ;0.8m;;Full Sun;8 – 10 hours/day;vegetable
+Cabbage, Chinese;;moist;6 to 9  ;0.5;;Full Sun;8 – 10 hours/day;vegetable
+Carrot;maritime;moist;4 to 8  ;0.6;;Full Sun;8 – 10 hours/day;vegetable
+Cauliflower;maritime;moist;3 to 10  ;0.8;;Full Sun;8 – 10 hours/day;vegetable
+Celeriac;;moist;5 to 9  ;0.6;;Full Sun;8 – 10 hours/day;vegetable
+Celery;;moist;5 to 9  ;0.6;0.3;Full Sun;8 – 10 hours/day;vegetable
+Chard, Swiss;;moist;4 to 8  ;0.9;;Tolerates Partial Shade/Partial Sun;6 – 8 hours/day;vegetable
+Chicory (Endive, Escarole);;moist;4 to 8  ;1;0.3;Tolerates Partial Shade/Partial Sun;6 – 8 hours/day;vegetable
+Chicory, Italian Dandelion;;moist;3 to 7  ;1.5;0.5;Tolerates Partial Shade/Partial Sun;6 – 8 hours/day;vegetable
+Chive;;moist;5 to 11  ;0.3;0.3;Tolerates Partial Shade/Partial Sun;6 – 8 hours/day;herb
+Coleus;;moist;10 to 11  ;;; Full shade ;less than 3 hours of sun). BUT! Some coleus varieties can handle full sun, so check the variety.;
+Collards;maritime;moist;5 to 10  ;0.9;;Tolerates Partial Shade/Partial Sun;6 – 8 hours/day;vegetable
+Corn Salad (Mâche, Feldsalat);;dry, moist;4 to 8  ;0.3;;Full Sun;8 – 10 hours/day;vegetable
+Corn, Sweet;;moist;2 to 11  ;2;;Full Sun;8 – 10 hours/day;vegetable, fruit
+Cosmos;;moist, dry;8 to 11  ;1;; Full sun ;6+ hours);flower
+Cress;;moist;6 to 9  ;0.5;;Full Sun;8 – 10 hours/day;herb
+Cucumber;;moist;9 to 11  ;2;;Full Sun;8 – 10 hours/day;fruit, vegetable
+Edamame;;moist;7 to 10  ;0.6;;Full Sun;8 – 10 hours/day;vegetable
+Eggplant;;moist;8 to 11  ;1;;Full Sun;8 – 10 hours/day;vegetable, fruit
+Fennel (Finocchio);Strong winds;dry, moist;3 to 10  ;1.5;1;Full Sun;8 – 10 hours/day;vegetable
+Garbanzo (Chickpea);;dry, moist;8 to 11  ;0.6;;Full Sun;8 – 10 hours/day;vegetable
+Garlic;;moist, dry;7 to 10  ;0.6;0.2;Full Sun;8 – 10 hours/day;vegetable
+Wild garlic;;moist;4 to 8  ;0.3;0.3;Tolerates Partial Shade and full shade;3 - 6 hours/day;vegetable, fruit
+Horseradish;;moist;4 to 9  ;0.7;0.8;Full Sun;8 – 10 hours/day;vegetable
+Hydrangeas;maritime;moist, dry;5 to 9  ;3;3; Partial sun/shade ;3-4 hours) to full shade ;flower
+Impatiens (Touch-me-not);;moist;5 to 9  ;1;; Full shade ;less than 3 hours of sun);flower
+Kale;maritime;moist;2 to 9  ;0.9;;Tolerates Partial Shade/Partial Sun;6 – 8 hours/day;vegetable
+Kohlrabi;maritime;moist;6 to 9  ;1.2;;Full Sun;8 – 10 hours/day;vegetable
+Lavender;maritime;moist, dry;5 to 8  ;1.2;1; Full sun ;6+ hours);herb, flower
+Leek;;moist;5 to 9  ;0.9;;Full Sun;8 – 10 hours/day;vegetable
+Lettuce, Head;;moist;5 to 9  ;0.9;0.3;Tolerates Partial Shade (but grows well with full sun in Spring and Fall);6 – 8 hours/day;vegetable
+Lily of the Valley;;dry, moist, wet;2 to 7  ;0.2;0.3; Full shade ;less than 3 hours of sun);flower
+Marigolds;;dry, moist;2 to 11  ;0.5;0.3; Full sun ;6+ hours);flower
+Muskmelon (Cantaloupe);;moist;9 to 11  ;1.5;;Full Sun;8 – 10 hours/day;fruit
+Mustard Greens;;moist;6 to 10  ;0.3;0.3;Tolerates Partial Shade/Partial Sun;6 – 8 hours/day;vegetable
+Onion;;moist;4 to 10  ;0.6;;Full Sun;8 – 10 hours/day;vegetable
+Spring Onion;;moist;5 to 9  ;0.6;0.2;Full Sun;8 – 10 hours/day;vegetable
+Parsley;;moist;4 to 9  ;0.6;0.3;Tolerates Partial Shade/Partial Sun;6 – 8 hours/day;herb
+Parsnip;;moist;4 to 8  ;1;0.3;Full Sun;8 – 10 hours/day;vegetable
+Pea;;moist;2 to 9  ;2;;Full Sun;8 – 10 hours/day;vegetable, fruit
+Sweet pea;;moist;2 to 11  ;2;;full sun, partial shade;6-8 hours/day;vegetable, fruit
+cayenne pepper;;moist;8 to 11  ;1;0.6;full sun;6-10 hours/day;fruit, vegetable
+szechuan pepper;;moist;5 to 8  ;4;6;full sun, partial shade, shade;4-10 hours/day;fruit, vegetable
+Jalapeno pepper;;moist;10 to 11  ;1;1;full sun;8-10 hours/day;fruit, vegetable
+bell pepper;;moist;10 to 11  ;1;1;full sun;8-10 hours/day;fruit, vegetable
+Petunias;;;9 to 11  ;;; Full sun ;6+ hours);flower
+Potato;;moist;7 to 10  ;1;;Full Sun;8 – 10 hours/day;vegetable
+Pumpkin;;moist;2 to 11  ;0.5;5;Full Sun;8 – 10 hours/day;vegetable, fruit
+Radicchio;;moist;3 to 7  ;1.5;0.5;Full Sun;8 – 10 hours/day;vegetable
+Radish;;moist;2 to 11  ;0.5;0.2;Full Sun;8 – 10 hours/day;vegetable
+Rutabaga;;moist;6 to 9  ;0.8;;Full Sun;8 – 10 hours/day;vegetable
+Shallot;;moist;4 to 8  ;0.3;;Full Sun;8 – 10 hours/day;vegetable
+Snapdragons;;moist, dry;5 to 10  ;1;0.2; Full sun ;6+ hours);flower
+Spinach;;moist;4 to 8  ;0.3;;Tolerates Partial Shade (but grows well with full sun in Spring and Fall);6-8 hours/day;vegetable
+Squash, Winter;;moist;2 to 11  ;0.6;5;Full Sun;8 – 10 hours/day;vegetable, fruit
+Sunflowers;;moist, dry;6 to 9  ;3;0.3; Full sun ;6+ hours);fruit
+Sweet Potato;;moist;10 to 12  ;3;;Full Sun;8 – 10 hours/day;vegetable
+Tomatillo;;moist;6 to 9  ;0.6;;Full Sun;8 – 10 hours/day;vegetable, fruit
+Cherry tomato;;moist, dry;8 to 11  ;2;0.4;Full Sun;8 – 10 hours/day;vegetable, fruit
+Tomato;;moist, dry;10 to 12  ;2;1.5;;;
+Turnip;;moist;7 to 11  ;0.5;;Tolerates Partial Shade/Partial Sun;6 – 8 hours/day;vegetable
+Watermelon;;moist, dry;8 to 11  ;0.5;2;Full Sun;8 – 10 hours/day;fruit
+Zucchini;;moist;2 to 11  ;0.6;3; Full sun ;6+ hours);flower
+mint;;moist;3 to 7  ;0.5;1;full sun, partial shade;6-10 hours/day;herb
+sage;;moist, dry;5 to 10  ;0.6;0.6;full sun;8-10 hours/day;herb
+rosemary;maritime;moist, dry;6 to 11  ;1.5;1.5;full sun;8-10 hours/day;herb
+cornflower;;moist, dry;3 to 10  ;1;0.3;full shade;8-10 hours/day;flower
+lemon balm;;moist, dry;4 to 8  ;0.7;0.4;full sun, partial shade;6-10 hours/day;
+https://ponicslife.com/how-much-sun-do-vegetables-need-a-complete-list/;;;;;;;;
+https://victoryseeds.com/blogs/articles/how-much-sunlight-do-my-plants-need;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;
+;;;;;;;;

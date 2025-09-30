@@ -1,0 +1,587 @@
+{% load static %}
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="{% static 'js/leaflet.tilelayer.fallback.js' %}"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+<!-- add TileLayer.Fallback script after Leaflet -->
+</head>   
+<style>
+:root{
+  --nav-bg: #085008;
+  --nav-accent: #13991f;
+  --accent-2: #2ea94b;
+  --muted: #5a6b56;
+  --card-bg: rgba(255,255,255,0.92);
+  --glass: rgba(255,255,255,0.75);
+  --radius: 10px;
+  --shadow-1: 0 8px 28px rgba(6,30,10,0.12);
+  --shadow-2: 0 6px 18px rgba(8,40,10,0.08);
+  --text: #18321a;
+  --map-border: rgba(6,30,10,0.16); 
+}
+body {
+  background-image: url("{% static 'plants/backgroundV.png' %}");
+  background-size: cover;
+  background-repeat: repeat;
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  height: 100%;
+  margin: 0;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* top navbar */
+.topnav {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+.nav-btn {
+overflow: hidden;
+background-color: #085008;
+}
+
+.nav-btn a {
+float: left;
+display: block;
+color: #f2f2f2;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+font-size: 17px;
+}
+.nav-btn a:hover {
+background-color: #13991f;
+color: white;
+}
+.nav-btn a.active {
+background-color: #13991f;
+color: white;
+}
+
+/* title aesthetics*/
+#title{ 
+  margin:32px auto 14px; 
+  max-width:1200px; 
+  padding:18px 22px; 
+  background:var(--card-bg); 
+  border-radius:var(--radius); 
+  box-shadow:var(--shadow-1); 
+  border-left:6px solid rgba(46,169,75,0.12); 
+  text-align:left; 
+}
+
+#title h1{ 
+  margin:0 0 6px; 
+  font-size:35px;
+  color:#0b3f18; 
+  font-weight: 600;
+}
+
+#title p{ 
+  margin-bottom:5px; 
+  font-size: 20px;
+  color:#0b3f18;
+}
+
+/* modal for user's properties*/
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(6,20,6,0.45);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+.modal-content {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius:var(--radius); 
+    box-shadow:var(--shadow-1); 
+    border-left:6px solid rgba(46,169,75,0.12); 
+    width: 400px;
+    max-width: 90%;
+    text-align: left;
+    position: relative;
+  }
+
+.close-btn {
+    position: absolute;
+    top: 10px; 
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    color:#3a3a3a;
+  }
+
+.close-btn:hover{ 
+  color:var(--nav-bg); 
+}
+
+/* inside modal */
+#balconyDirection p{ 
+  margin:6px 0 8px; 
+  font-weight:600; 
+  color:#0e4320; 
+}
+
+#month p{ 
+  margin:6px 0 8px; 
+  font-weight:600; 
+  color:#0e4320; 
+}
+
+#balconyDirection label{ 
+  margin-left:8px; 
+  font-weight:500; 
+  color:var(--text); 
+}
+
+#month label{ 
+  margin-left:8px; 
+  font-weight:500; 
+  color:var(--text); 
+}
+
+#balconyDirection div{ 
+  margin-bottom:8px; 
+}
+
+#month div{ 
+  margin-bottom:8px; 
+}
+
+/*dropdown selection */
+select{
+  padding:8px 12px; 
+  border:1px solid rgba(6,30,10,0.12); 
+  border-radius:6px; 
+  font-size:16px; 
+  color:var(--text); 
+  background-color:var(--glass); 
+  box-shadow:0 4px 12px rgba(6,30,10,0.08); 
+  cursor:pointer; 
+}
+
+/*radio buttons*/
+input[type="radio"]{ 
+  appearance:none; 
+  -webkit-appearance:none; 
+  width:18px; 
+  height:18px; 
+  border-radius:50%; 
+  border:2px solid rgba(6,30,10,0.18); 
+  display:inline-block; 
+  vertical-align:middle; 
+  margin:0; 
+  position:relative; 
+  cursor:pointer; 
+}
+
+input[type="radio"]:checked{ 
+  background: radial-gradient(circle at center, #fff 28%, var(--nav-accent) 29%); 
+  border-color:var(--nav-accent); 
+  box-shadow:0 0 0 4px rgba(19,153,31,0.08); 
+}
+
+#balconyDirection button[type="submit"]{ 
+  margin-top:10px; 
+  padding:10px 14px; 
+  background:linear-gradient(180deg,var(--nav-accent),#0f8a25); 
+  color:#fff; 
+  border:none; 
+  border-radius:8px; 
+  cursor:pointer; 
+  font-weight:600; 
+  box-shadow:0 6px 16px rgba(15,110,20,0.16); 
+}
+
+#month button[type="submit"]{ 
+  margin-top:8px; 
+  padding:10px 14px; 
+  background:linear-gradient(180deg,var(--nav-accent),#0f8a25); 
+  color:#fff; 
+  border:none; 
+  border-radius:8px; 
+  cursor:pointer; 
+  font-weight:600; 
+  box-shadow:0 6px 16px rgba(15,110,20,0.16); 
+}
+
+#balconyDirection, button[type="submit"]:hover{ 
+  transform:translateY(-1px); 
+}
+
+#hardinessZone{ 
+  font-weight:600; 
+  color:#0a4e1d; 
+  margin:6px 0 10px;
+}
+
+#cityName{
+  font-weight:700; 
+  color:#0a4e1d; 
+  margin:6px 0 10px;
+}
+
+/* body: map and results */
+.container {
+    display: flex;
+    gap: 5%;
+    flex-direction: row;
+    height: 700px;
+    max-width: 100%;
+    align-items:flex-start; 
+    justify-content:center;
+  }
+
+#map {
+    margin-top: 1%;
+    margin-left: 5%;
+    width: 60%; 
+    height: 80%;
+    max-width: 800px;
+    max-height: 600px;
+    border: 2px solid var(--map-border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-2);
+    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+    overflow: hidden;
+  }
+
+#results {
+    display: none;
+    background:var(--card-bg);
+    padding: 15px;
+    height: 80%;
+    margin-top: 1%;
+    max-height: 800px;
+    max-width: 800px;
+    width: 45%;
+    border:1px solid rgba(6,30,10,0.06); 
+    overflow-y:auto; 
+    color:var(--text);
+    border-radius:var(--radius); 
+    box-shadow:var(--shadow-1); 
+    border-left:6px solid rgba(46,169,75,0.12); 
+    position: relative;
+  }
+
+#resultsHeader h4{ 
+  margin:0 0 10px; 
+  color:#0a4e1d; 
+  font-weight:600;
+}
+
+#resultsContent{ 
+  column-count:1; 
+  column-gap:20px; 
+  columns: 2;
+}
+
+#resultsContent h5{ 
+  margin:10px 0 6px; 
+  color:#1e812d; 
+  font-weight:600;
+}
+
+#resultsContent ul{ 
+  margin:0 0 12px 18px; 
+  padding:0; 
+  list-style:none; 
+  color:#0f2f18; 
+}
+
+#resultsContent li{ 
+  margin:6px 0; 
+}
+
+
+/*aesthetics */ 
+.card{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:16px;
+    box-shadow: 0 8px 30px rgba(12,40,12,0.06);
+    border-left: 6px solid rgba(46,169,75,0.14);
+    margin-top: 6px;
+  }
+
+a{ 
+  color:var(--accent-2); 
+  text-decoration:none; 
+}
+
+a:hover{ 
+  text-decoration:underline; 
+}
+
+.muted{ 
+    color:var(--muted); 
+    font-size:15px; 
+}
+
+
+</style>
+<body>
+<!--define ID for JS data-->
+{{ cities | json_script:"cities-data" }} 
+
+<!--topnav-->
+<div class="topnav"> <!--top navbar-->
+<div class="nav-btn">
+  <a href="{% url 'map' %}" class="active">Map</a>
+  <a href="{% url 'theory' %}">Methods</a>
+  <a href="{% url 'about' %}">About</a>
+</div>
+</div>
+
+<header id="title"> <!--to not have the navbar overlap the content-->
+  <h1>Which plants to grow on your balcony?</h1>
+  <p>You have a balcony and you are curious about which plants you could grow? Click your city and see summer suggestions.</p>
+  <span class="muted">Note: This web app is still a work in progress, check back in a couple of weeks for new features!</span>
+</header>
+
+<main class="container" role="main">
+  <section id="map" aria-label="Map of cities" role="region"></section>
+  <aside id="results" aria-label="Plant suggestions" role="complementary">
+    <div id="resultsHeader"></div>
+    <div id="resultsContent"></div>
+  </aside>
+</main>
+
+
+<!--modals-->  
+<div id="modalWindow" class="modal">
+  <div class="modal-content" role="document">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <h3 id="cityName">City: </h3>
+    <p id="hardinessZone">Hardiness zone: </p>
+    <form id="selection">
+      <fieldset id="month"> <!--choose month-->
+        <p>Select month:</p>
+        <select required id="monthSelect" name="months" onchange="getOption()">
+          <option value=""></option>
+          <option value="mar">March</option>
+          <option value="apr">April</option>
+          <option value="may">May</option>
+          <option value="jun">June</option>
+          <option value="jul">July</option>
+          <option value="aug">August</option>
+          <option value="sep">September</option>
+        </select>
+      </fieldset>
+
+      <fieldset id="balconyDirection">
+        <p>Select balcony direction:</p>
+        <div>
+          <input type="radio" id="north" name="direction" value="North">
+          <label for="north">North</label>
+        </div>
+        <div>
+          <input type="radio" id="south" name="direction" value="South">
+          <label for="south">South</label>
+        </div>
+        <div>
+          <input type="radio" id="east" name="direction" value="East" required>
+          <label for="east">East</label>
+        </div>
+        <div>
+          <input type="radio" id="west" name="direction" value="West">
+          <label for="west">West</label>
+        <br>
+        </div>
+        <button type="submit">Show plants</button>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
+<footer class="card muted" style="text-align:right;">
+  <span id="date"></span>
+</footer>
+
+<script>
+
+//variables:
+let citiesData, maxBounds, map, cityName, modalWindow, hardinessZone, markerColor, closeBtn, dir, month, monthForm, results, resultsContent, resultsHeader;
+
+
+//load json data: now a JS object of cities: citiesData["Berlin"] etc. From the ID created in the body.
+citiesData = JSON.parse(document.getElementById('cities-data').textContent);
+console.log(Object.values(citiesData));
+
+
+// define map and its maximal zoom, to only show europe    
+// credits: https://github.com/ghybs/Leaflet.TileLayer.Fallback
+// https://www.apache.org/licenses/LICENSE-2.0
+maxBounds = L.latLngBounds(
+  L.latLng(30,-30), //southwest
+  L.latLng(71.8, 40)  //northeast
+);
+
+
+map = L.map('map',{
+
+  'center': [0,0],
+  'zoom': 4,
+  'maxBounds': maxBounds}); //where image is centered and zoom level 
+
+  let myTileLayer = L.tileLayer.fallback('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      minNativeZoom: 4,
+      maxNativeZoom: 19,
+      minZoom: 4,
+      maxZoom: 22,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      errorTileUrl: 'blank.png'
+  });
+myTileLayer.addTo(map);
+
+
+//create markers for city, insert text in modal
+cityName = document.getElementById("cityName");
+modalWindow = document.getElementById("modalWindow");
+hardinessZone = document.getElementById("hardinessZone");
+
+markerColor = L.icon({ //my icon
+  iconUrl: '{% static "plants/marker.png" %}',
+  iconSize: [25, 31], // size of the icon
+  iconAnchor: [12, 41], // point of the icon which will correspond to marker's location
+  popupAnchor: [1, -34], // point from which the popup should open relative to the iconAnchor
+  shadowSize: [41, 41] // size of the shadow
+})
+
+
+Object.values(citiesData).forEach(city => {
+
+  let myMarker = L.marker([city.latitude, city.longitude], { icon: markerColor }).addTo(map); //add marker to map
+  myMarker.on("click", function() {
+      cityName.textContent = city.name; //set the name of cityName to the value of city.name, <h3 id="cityName">
+      hardinessZone.textContent = "Hardiness zone: " + city.zone;
+      modalWindow.style.display = "flex"; //show modal
+  });
+});
+
+//close modal
+closeBtn = document.getElementById("closeModal");
+
+//button to close modal
+closeBtn.addEventListener("click", function() {
+modalWindow.style.display = "none"; //close modal
+});
+
+//click outside modal to close
+window.addEventListener("click", function(e) {
+let allButtons = document.querySelectorAll('input[name="direction"]'); //all radio buttons
+let monthButtons = document.querySelectorAll('input[name="monthSelect"]'); //all month radio buttons
+if (e.target === modalWindow) {
+  modalWindow.style.display = "none"; //hide
+  allButtons.forEach(button => {
+  button.checked = false; //reset radio buttons if clicking outside modal
+  });
+  document.getElementById("monthSelect").value = "";
+}
+});
+
+
+function getOption(){
+  month = document.getElementById("monthSelect").value;
+
+//choose direction
+  sel = document.getElementById("selection"); //choose direction
+  monthForm = document.getElementById("month"); //choose month
+  results = document.getElementById("results");
+  resultsContent = document.getElementById("resultsContent");
+  resultsHeader = document.getElementById("resultsHeader");
+  
+  //make form interactive
+  sel.addEventListener("submit", function(e) {
+  
+    e.preventDefault(); //prevent form from submitting
+  
+    let selDir = document.querySelector('input[name="direction"]:checked'); //selected radio button
+    //let selDir = document.getElementById('monthSelect');
+    //console.log(selDir);
+    //let selMon = document.querySelector('select[name="monthSelect"]:checked'); //selected month radio button
+    let currentCity = citiesData[cityName.textContent]; //get current city data from citiesData object
+    let direction = selDir.value.toLowerCase(); //get value of selected direction and make lowercase
+    console.log(direction);
+    //let month = selMon.value; //get value of selected month
+    const monthNames = { 
+      "mar": "March",
+      "apr": "April",
+      "may": "May",
+      "jun": "June", 
+      "jul": "July", 
+      "aug": "August",
+      "sep": "September" 
+    };
+  
+    if (direction.charAt(0) != "e") { //"an" east or "a" north/south/west
+      resultsHeader.innerHTML = "<h4>In a " + direction + "-facing balcony in " + currentCity.name + ", in " + monthNames[month] + " you can grow following plants:<br></h4>";
+    } else {
+      resultsHeader.innerHTML = "<h4>In an " + direction + "-facing balcony in " + currentCity.name + ", in " + monthNames[month] + " you can grow following plants:<br></h4>";
+    }
+    resultsHeader.innerHTML += "<span class='muted' style='font-size: 17px; margin-bottom: 5px;'>Hardiness zone: " + currentCity.zone + ", average sunlight hours: " + currentCity.average_month[month] +".</span>";
+  
+    resultsContent.innerHTML = ""; //clear previous results
+  
+    let monthPlants = currentCity.plants[month]; //get plants for current city
+    for (let [category, plants] of Object.entries(monthPlants)) {
+      let matches = plants.filter(plant => plant[1] === direction); //filter plants by direction
+      let output;
+      if (matches.length > 0) { //check if there are matches
+        let categoryUppercase = category.charAt(0).toUpperCase() + category.slice(1); //capitalize first letter of category
+        if (matches.length === 1) { //singular if only one match
+          output = `<h5>${categoryUppercase}:</h5><ul>`; 
+        } else {
+          output = `<h5>${categoryUppercase}s:</h5><ul>`;  
+        }
+      
+        matches.forEach(plant => {
+        output += `<li>${plant[0]}</li>`; //add each plant to the list
+        }); 
+      } else { //if no matches, write no suitable plants
+          output = `<h3>No suitable ${category}s for ${direction}-facing balcony :(</h3>`;
+        }
+        output += "</ul>"; //close list
+        resultsContent.innerHTML += output; //append html to results div
+        resultsContent.style.display = "block"; //show results div
+        results.style.display = "block"; //show results div
+        modalWindow.style.display = "none"; // close modal after choosing direction
+        selDir.checked = false; //reset radio button after submitting
+        document.getElementById("monthSelect").value = "";
+      
+        //month.checked = false; //reset month radio button after submitting
+    }
+    
+  
+  });
+
+}
+
+let date = new Date();
+let monthStr = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+let name = monthStr[date.getMonth()];
+document.getElementById("date").innerHTML = "Last updated: " + date.getDate() + ". " + name + " " + date.getFullYear();
+
+</script>
+
+</body>
+</html>
+
+
+

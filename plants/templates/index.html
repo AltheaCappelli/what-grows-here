@@ -1,0 +1,35 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>   
+<style>
+body {
+    background-color: #ffffff;
+    color: #333;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+</style>
+<body>
+
+<h1>Welcome!</h1>
+<p>Here you'll learn which plants to have on your balcony</p>
+
+
+
+<ul>
+    {% for x in zones_plants %}
+    <li>
+        <p>in {{x.city_name}} is zone {{x.usda_plant}} grow: {{x.plants}}</p>
+    </li>
+    {% endfor %}
+
+</ul>
+
+hi bula
+ 
+
+</body>
+</html>

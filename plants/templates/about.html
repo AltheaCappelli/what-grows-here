@@ -1,0 +1,224 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!-- add TileLayer.Fallback script after Leaflet -->
+</head>   
+<style>
+
+/* top navbar */
+.topnav {
+    list-style-type: none;
+    top: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 999;
+
+}
+.nav-btn {
+  z-index: 1000;
+  overflow: hidden;
+  height: 54px;
+  background-color: #085008;
+}
+
+.nav-btn a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 17px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+.nav-btn a:hover {
+  background-color: #13991f;
+  color: white;
+  height: 54px;
+}
+.nav-btn a.active {
+  background-color: #13991f;
+  color: white;
+  height: 54px;
+}
+
+
+:root{
+    --bg-img: url("{% static 'plants/backgroundV.png' %}");
+    --nav-bg: #085008;      /* your top navbar dark green */
+    --nav-accent: #13991f;  /* your highlight green */
+    --muted: #5a6b56;
+    --card: rgba(255,255,255,0.96);
+    --accent-2: #2ea94b;    /* lively accent */
+    --maxw: 1100px;
+    --radius: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    --txt-color: #18321a; 
+}
+
+body{
+  background-image: var(--bg-img);
+  background-size: cover;
+  background-repeat: repeat;
+  color: #1d2b1f;
+  justify-content: center;
+  display: flex;
+  height: 100%;
+}
+  
+.wrap{
+  width:100%;
+  max-width: 1400px;
+  padding: 0 18px;
+  justify-content: center;
+}
+
+/* title */
+#title{
+  margin-top:62px;
+  text-align:left;
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow: 0 8px 30px rgba(12,40,12,0.06);
+  border-left: 6px solid rgba(46,169,75,0.14);
+
+}
+
+#title h1{
+  margin-bottom: 15px;
+  color:#0b3f18;
+  font-size:35px;
+}
+
+#title p{
+  margin:0; 
+  color:var(--muted);
+  margin-bottom: 10px;
+}
+
+/*aesthetics */
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:16px;
+  box-shadow: 0 8px 30px rgba(12,40,12,0.06);
+  border-left: 6px solid rgba(46,169,75,0.14);
+  margin-top: 6px;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns: 1fr 340px;
+  gap:18px;
+  align-items:start;
+}
+
+h2{ 
+  color:#0a4e1d; 
+  margin:6px 0 10px;
+  font-size: 30px;
+}
+  
+h3{
+  margin:8px 0; color:#0a4e1d;
+}
+
+ul.clean{ 
+  margin:8px 0 12px 20px;
+  font-size: 20px;
+  color: var(--txt-color)
+}
+
+li{ 
+  margin:6px 0;
+}
+
+.muted{ 
+  color:var(--muted); 
+  font-size:17px; 
+}
+
+p{ 
+  font-size:20px; 
+  color:var(--txt-color);
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 1%;
+}
+
+a{ 
+  color:var(--accent-2); 
+  text-decoration:none; 
+}
+
+a:hover{ 
+  text-decoration:underline; 
+}
+
+  /* responsive to other screen sizes */
+@media (max-width:600px){
+  .grid{ grid-template-columns: 1fr; }
+  .column{ width: 100%; }
+  ul.topnav{ justify-content:center; }
+}
+
+</style>
+<body>
+
+<div class="topnav"> <!--top navbar-->
+<div class="nav-btn">
+  <a href="{% url 'map' %}">Map</a>
+  <a href="{% url 'theory' %}">Methods</a>
+  <a href="{% url 'about' %}" class="active">About</a>
+</div>
+</div>
+
+<div class="wrap">
+    <div id="title">
+        <h1>About the web app</h1>
+        <p class="muted">Note: This web app is still a work in progress, check back in a couple of weeks for new features! </p>
+    </div>
+
+  <section class="card">
+    <p> My name is Althea and I like exploring progamming ideas and projcts I find interesting, mostly around software developing and machine learning.  
+    </p>
+    <p> Hi, I’m Althea! I like exploring programming projects that I find interesting, especially in software development and machine learning. IWith bachelor's and master's degrees in physics, 
+        and a strong background in theoretical physics, I’m comfortable working with complex data and programming, but I’m still excited to keep learning new things and trying out new ideas. <br>
+        Check out my other projects on <a href="https://altheacappelli.github.io/">my website</a>!
+    </p>
+  </section>
+    <section class="card">  
+    <p> I recently moved to Düsseldorf, and for the first time I had a balcony in my apartment. As a plant enthtusiast, I was excited to start a little balcony garden! But I quickly realized 
+        I had no idea which plants were suitable for my balcony, and unsurprisingly half of them died in no time :D 
+        This gave me the idea for this web app, as I could not find such an interactive map online focused on balcony gardening in Europe. <br> 
+        Using Django, a Python web framework, I created this application to help myself and other wannabe balcony gardeners. <br>
+        P.S. As I am not a botanist, I collected plants information from various sources online. If you have any suggestions or corrections, please feel free to reach out to me! <br>
+    </p>
+  </section>
+
+  <section>
+    
+  </section>
+    <footer class="card muted" style="text-align:right; margin-top: 24%;">
+        <span id="date"></span>
+    </footer>
+</div>
+
+
+</body>
+
+<script>
+
+let date = new Date();
+let monthStr = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+let name = monthStr[date.getMonth()];
+document.getElementById("date").innerHTML = "Last updated: " + date.getDate() + ". " + name + " " + date.getFullYear();
+
+</script>
+</html>
